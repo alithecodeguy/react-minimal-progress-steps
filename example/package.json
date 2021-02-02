@@ -1,5 +1,5 @@
 {
-  "name": "progress-steps-example",
+  "name": "react-minimal-progress-steps-example",
   "homepage": ".",
   "version": "0.0.0",
   "private": true,
@@ -10,9 +10,9 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
-    "progress-steps": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
+    "react-minimal-progress-steps": "file:..",
     "react-scripts": "file:../node_modules/react-scripts"
   },
   "devDependencies": {
