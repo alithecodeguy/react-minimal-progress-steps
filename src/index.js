@@ -1,23 +1,39 @@
 import React from 'react'
 import styles from './styles.module.css'
 
-const ReactMinimalProgressSteps = ({ data }) => {
-  const [currentActive, setCurrentActive] = React.useState(1)
+const ReactMinimalProgressSteps = ({
+  data,
+  selectedItemId = 1,
+  returnSelectedItemId = () => {}
+}) => {
+  const [currentActive, setCurrentActive] = React.useState(selectedItemId)
 
   const handleNext = () => {
+    let newCurrentActive
     if (currentActive > data.length) {
-      setCurrentActive(data.length)
+      newCurrentActive = data.length
     } else {
-      setCurrentActive(currentActive + 1)
+      newCurrentActive = currentActive + 1
     }
+    setCurrentActive(newCurrentActive)
+    returnSelectedItemId(newCurrentActive)
   }
   const handlePrev = () => {
+    let newCurrentActive
     if (currentActive < 1) {
-      setCurrentActive(1)
+      newCurrentActive = 1
     } else {
-      setCurrentActive(currentActive - 1)
+      newCurrentActive = currentActive - 1
     }
+    setCurrentActive(newCurrentActive)
+    returnSelectedItemId(newCurrentActive)
   }
+
+  const handleCircleClick = (item) => {
+    returnSelectedItemId(item.id)
+    setCurrentActive(item.id)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.progressContainer}>
@@ -29,12 +45,13 @@ const ReactMinimalProgressSteps = ({ data }) => {
         ></div>
         {data.map((item) => (
           <div
+            key={item.id}
             className={`${styles.circle} ${
               currentActive > item.id
                 ? styles.active
                 : currentActive == item.id && styles.current
             }`}
-            onClick={() => setCurrentActive(item.id)}
+            onClick={() => handleCircleClick(item)}
           >
             {item.content}
           </div>
