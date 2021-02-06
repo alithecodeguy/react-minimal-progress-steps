@@ -35,7 +35,9 @@ const App = () => {
       <ReactMinimalProgressSteps
         data={data}
         selectedItemId={selectedItemId} // send an item id as props
-        returnSelectedItemId={setSelectedItemId} // returns selected item's id
+        setSelectedItemId={setSelectedItemId} // returns selected item's id
+        nextButtonText={'بعدی'} // default : "Next"
+        prevButtonText={'قبلی'} // default : "Prev"
       />
     </div>
   )
